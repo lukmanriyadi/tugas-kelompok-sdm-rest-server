@@ -69,7 +69,7 @@ class Jabatan extends REST_Controller
         $data = [
             'nama_jabatan' => $this->post('nama_divisi'),
             'min_gaji' => $this->post('min_gaji'),
-            'max_gaji' => $this->post('max_gaji'),
+            'maks_gaji' => $this->post('maks_gaji'),
         ];
 
         if ($this->jabatan->createJabatan($data) > 0) {
@@ -91,7 +91,7 @@ class Jabatan extends REST_Controller
         $data = [
             'nama_divisi' => $this->put('nama_divisi'),
             'min_gaji' => $this->put('min_gaji'),
-            'max_gaji' => $this->put('max_gaji'),
+            'maks_gaji' => $this->put('maks_gaji'),
         ];
 
         if ($this->divisi->updateJabatan($data, $id) > 0) {
