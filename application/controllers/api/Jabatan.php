@@ -67,7 +67,7 @@ class Jabatan extends REST_Controller
     public function index_post()
     {
         $data = [
-            'nama_jabatan' => $this->post('nama_divisi'),
+            'nama_jabatan' => $this->post('nama_jabatan'),
             'min_gaji' => $this->post('min_gaji'),
             'maks_gaji' => $this->post('maks_gaji'),
         ];
@@ -89,7 +89,7 @@ class Jabatan extends REST_Controller
     {
         $id = $this->put('id');
         $data = [
-            'nama_divisi' => $this->put('nama_divisi'),
+            'nama_jabatan' => $this->put('nama_jabatan'),
             'min_gaji' => $this->put('min_gaji'),
             'maks_gaji' => $this->put('maks_gaji'),
         ];
