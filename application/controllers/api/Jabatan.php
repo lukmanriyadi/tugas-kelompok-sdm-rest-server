@@ -94,7 +94,7 @@ class Jabatan extends REST_Controller
             'maks_gaji' => $this->put('maks_gaji'),
         ];
 
-        if ($this->divisi->updateJabatan($data, $id) > 0) {
+        if ($this->jabatan->updateJabatan($data, $id) > 0) {
             $this->response([
                 'status' => TRUE,
                 'message' => 'Data jabatan updated',
