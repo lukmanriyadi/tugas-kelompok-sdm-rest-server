@@ -1,6 +1,6 @@
 <?php
 
-class Divisi_model extends CI_Model
+class Jabatan_model extends CI_Model
 {
     public function getJabatan($id = null)
     {
