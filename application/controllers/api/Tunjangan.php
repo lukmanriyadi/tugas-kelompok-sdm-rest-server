@@ -7,12 +7,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
-class Pelanggaran extends REST_Controller
+class Tunjangan extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Pelanggaran_model', 'pelanggaran');
+        $this->load->model('Tunjangan_model', 'tunjangan');
     }
 
     public function index_get()
@@ -20,16 +20,16 @@ class Pelanggaran extends REST_Controller
         $id = $this->get('id');
 
         if ($id === null) {
-            $pelanggaran = $this->pelanggaran->getPelanggaran();
+            $tunjangan = $this->tunjangan->getTunjangan();
         } else {
-            $pelanggaran = $this->pelanggaran->getPelanggaran($id);
+            $tunjangan = $this->tunjangan->getTunjangan($id);
         }
 
-        if ($pelanggaran) {
+        if ($tunjangan) {
             $this->response([
                 'status' => TRUE,
                 'message' => 'Success Get Data',
-                'data' => $pelanggaran
+                'data' => $tunjangan
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
