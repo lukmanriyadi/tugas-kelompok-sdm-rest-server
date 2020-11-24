@@ -5,10 +5,64 @@ class Pegawai_model extends CI_Model
     public function getPegawai($id = null)
     {
         if ($id === null) {
-            return $this->db->get('pegawai')->result_array();
+            $this->db->select(
+                'pegawai.id_pegawai,
+                pegawai.nama_depan,
+                pegawai.nama_belakang,
+                divisi.nama_divisi,
+                jabatan.nama_jabatan,
+                pegawai.TTL,
+                pegawai.jenis_kelamin,
+                pegawai.kontak,
+                pegawai.alamat,
+                pegawai.gaji'
+            );
+            $this->db->from('pegawai');
+            $this->db->join('divisi', 'pegawai.id_divisi = divisi.id_divisi');
+            $this->db->join('jabatan', 'pegawai.id_jabatan = jabatan.id_jabatan');
+            $query = $this->db->get();
+            return $query->result_array();
         } else {
-            return $this->db->get_where('pegawai', ['id_pegawai' => $id])->result_array();
+            $this->db->select(
+                'pegawai.id_pegawai,
+                pegawai.nama_depan,
+                pegawai.nama_belakang,
+                divisi.nama_divisi,
+                jabatan.nama_jabatan,
+                pegawai.TTL,
+                pegawai.jenis_kelamin,
+                pegawai.kontak,
+                pegawai.alamat,
+                pegawai.gaji'
+            );
+            $this->db->from('pegawai');
+            $this->db->join('divisi', 'pegawai.id_divisi = divisi.id_divisi');
+            $this->db->join('jabatan', 'pegawai.id_jabatan = jabatan.id_jabatan');
+            $this->db->where('pegawai.id_pegawai', $id);
+            $query = $this->db->get();
+            return $query->result_array();
         }
+    }
+    public function getPegawaiPerDivisi($divisi)
+    {
+        $this->db->select(
+            'pegawai.id_pegawai,
+            pegawai.nama_depan,
+            pegawai.nama_belakang,
+            divisi.nama_divisi,
+            jabatan.nama_jabatan,
+            pegawai.TTL,
+            pegawai.jenis_kelamin,
+            pegawai.kontak,
+            pegawai.alamat,
+            pegawai.gaji'
+        );
+        $this->db->from('pegawai');
+        $this->db->join('divisi', 'pegawai.id_divisi = divisi.id_divisi');
+        $this->db->join('jabatan', 'pegawai.id_jabatan = jabatan.id_jabatan');
+        $this->db->where('divisi.nama_divisi', $divisi);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function deletePegawai($id)
