@@ -37,7 +37,32 @@ class Pegawai extends REST_Controller
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
+    public function perDivisi_get()
+    {
 
+        $divisi = $this->get('divisi');
+        if ($divisi === null) {
+            $this->response([
+                'status' => FALSE,
+                'message' => 'provide Divisi',
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        } else {
+            $divisi = strtoupper($divisi);
+            $pegawai = $this->pegawai->getPegawaiPerDivisi($divisi);
+            if ($pegawai) {
+                $this->response([
+                    'status' => TRUE,
+                    'message' => 'Success Get Data',
+                    'data' => $pegawai
+                ], REST_Controller::HTTP_OK);
+            } else {
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'Data Not Found',
+                ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        }
+    }
     public function index_delete()
     {
         $id = $this->delete('id');
