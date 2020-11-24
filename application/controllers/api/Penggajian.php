@@ -38,4 +38,35 @@ class Penggajian extends REST_Controller
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
+
+    public function perPeriode_get()
+    {
+        $bulan = $this->get('bulan');
+        $tahun = $this->get('tahun');
+
+        if ($bulan === null || $tahun === null) {
+            $this->response([
+                'status' => FALSE,
+                'message' => 'Provide parameter',
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        } else {
+            $bulan = strtolower($bulan);
+            $tahun = strtolower($tahun);
+
+            $penggajian = $this->penggajian->getPerPeriode($bulan, $tahun);
+
+            if ($penggajian) {
+                $this->response([
+                    'status' => TRUE,
+                    'message' => 'Success Get Data',
+                    'data' => $penggajian
+                ], REST_Controller::HTTP_OK);
+            } else {
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'Data Not Found',
+                ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        }
+    }
 }
