@@ -69,4 +69,31 @@ class Absensi extends REST_Controller
             }
         }
     }
+
+    public function perPegawai_get()
+    {
+        $id_pegawai = $this->get('id');
+
+        if ($id_pegawai === null) {
+            $this->response([
+                'status' => FALSE,
+                'message' => 'Provide parameter',
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        } else {
+            $absensi = $this->absensi->getPerPegawai($id_pegawai);
+
+            if ($absensi) {
+                $this->response([
+                    'status' => TRUE,
+                    'message' => 'Success Get Data',
+                    'data' => $absensi
+                ], REST_Controller::HTTP_OK);
+            } else {
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'Data Not Found',
+                ], REST_Controller::HTTP_NOT_FOUND);
+            }
+        }
+    }
 }
