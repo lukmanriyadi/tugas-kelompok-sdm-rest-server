@@ -96,4 +96,10 @@ class Penggajian_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function createPenggajian($data)
+    {
+        $this->db->insert('gaji', $data);
+        return $this->db->affected_rows();
+    }
 }

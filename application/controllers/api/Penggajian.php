@@ -38,7 +38,32 @@ class Penggajian extends REST_Controller
             ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
+    public function index_post()
+    {
+        $data = [
+            'id_pembayaran' => $this->post('id_pembayaran'),
+            'id_pegawai' => $this->post('id_pegawai'),
+            'periode_bulan' => $this->post('periode_bulan'),
+            'periode_tahun' => $this->post('periode_tahun'),
+            'tgl_pembayaran' => $this->post('tgl_pembayaran'),
+            'gaji_pokok' => $this->post('gaji_pokok'),
+            'gaji_total' => $this->post('gaji_total'),
+            'tunjangan' => $this->post('tunjangan'),
+            'potongan' => $this->post('potongan'),
+        ];
 
+        if ($this->penggajian->createPenggajian($data) > 0) {
+            $this->response([
+                'status' => TRUE,
+                'message' => 'new Data penggajian Created',
+            ], REST_Controller::HTTP_CREATED);
+        } else {
+            $this->response([
+                'status' => FALSE,
+                'message' => 'Failed to create data penggajian',
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+    }
     public function perPeriode_get()
     {
         $bulan = $this->get('bulan');
