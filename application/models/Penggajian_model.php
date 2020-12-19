@@ -16,7 +16,9 @@ class Penggajian_model extends CI_Model
                 gaji.gaji_pokok,
                 gaji.tunjangan,
                 gaji.potongan,
-                gaji.gaji_total'
+                gaji.gaji_total,
+                gaji.status'
+
             );
             $this->db->from('gaji');
             $this->db->join('pegawai', 'gaji.id_pegawai = pegawai.id_pegawai');
@@ -36,7 +38,8 @@ class Penggajian_model extends CI_Model
                 gaji.gaji_pokok,
                 gaji.tunjangan,
                 gaji.potongan,
-                gaji.gaji_total'
+                gaji.gaji_total,
+                gaji.status'
             );
             $this->db->from('gaji');
             $this->db->join('pegawai', 'gaji.id_pegawai = pegawai.id_pegawai');
@@ -61,7 +64,8 @@ class Penggajian_model extends CI_Model
             gaji.gaji_pokok,
             gaji.tunjangan,
             gaji.potongan,
-            gaji.gaji_total'
+            gaji.gaji_total,
+            gaji.status'
         );
         $this->db->from('gaji');
         $this->db->join('pegawai', 'gaji.id_pegawai = pegawai.id_pegawai');

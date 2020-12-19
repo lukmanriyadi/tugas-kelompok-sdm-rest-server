@@ -50,6 +50,7 @@ class Penggajian extends REST_Controller
             'gaji_total' => $this->post('gaji_total'),
             'tunjangan' => $this->post('tunjangan'),
             'potongan' => $this->post('potongan'),
+            'status' => $this->post('status'),
         ];
 
         if ($this->penggajian->createPenggajian($data) > 0) {
